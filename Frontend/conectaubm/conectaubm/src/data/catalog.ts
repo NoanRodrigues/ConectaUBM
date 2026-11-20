@@ -1,0 +1,60 @@
+/** Cursos e interesses oferecidos nos formulários e filtros. Ajuste a lista à grade real da UBM. */
+export const COURSES = [
+  'Administração',
+  'Arquitetura e Urbanismo',
+  'Biomedicina',
+  'Ciências Contábeis',
+  'Direito',
+  'Educação Física',
+  'Enfermagem',
+  'Engenharia Civil',
+  'Engenharia de Produção',
+  'Engenharia de Software',
+  'Engenharia Elétrica',
+  'Engenharia Mecânica',
+  'Farmácia',
+  'Fisioterapia',
+  'Jornalismo',
+  'Medicina Veterinária',
+  'Nutrição',
+  'Pedagogia',
+  'Psicologia',
+  'Publicidade e Propaganda',
+] as const;
+
+export const PERIODS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
+
+export const INTERESTS = [
+  'Programação',
+  'Hackathons',
+  'Games',
+  'Design',
+  'Fotografia',
+  'Música',
+  'Cinema',
+  'Séries',
+  'Leitura',
+  'Teatro',
+  'Podcasts',
+  'Idiomas',
+  'Futsal',
+  'Vôlei',
+  'Corrida',
+  'Academia',
+  'Dança',
+  'Xadrez',
+  'Empreendedorismo',
+  'Finanças',
+  'Marketing',
+  'Pesquisa científica',
+  'Voluntariado',
+  'Sustentabilidade',
+  'Saúde mental',
+  'Culinária',
+  'Café',
+  'Viagens',
+  'Pets',
+] as const;
+
+/** Assuntos em alta exibidos no feed e nas sugestões de pesquisa. */
+export const TRENDING_TAGS = ['SemanaAcadêmica', 'HackathonUBM', 'GrupoDeEstudos', 'Atlética', 'Estágio', 'Extensão'];

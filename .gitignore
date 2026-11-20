@@ -1,0 +1,22 @@
+# ===== ConectaUBM =====
+
+# Dependências e builds
+node_modules/
+dist/
+dist-demo/
+target/
+
+# Senhas e segredos (os arquivos .env.example / env.example vão para o GitHub)
+.env
+
+# Fotos e vídeos enviados pelos usuários
+Backend/ConectaUBM/uploads/
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db

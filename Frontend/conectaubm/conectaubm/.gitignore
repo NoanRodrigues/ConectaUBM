@@ -1,0 +1,8 @@
+node_modules
+dist
+.DS_Store
+*.local
+dist-demo
+
+# Variáveis locais (o .env.example vai para o GitHub, o .env não)
+.env

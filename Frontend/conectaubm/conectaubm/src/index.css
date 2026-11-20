@@ -1,0 +1,289 @@
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/figtree';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Tema claro (padrão), baseado nas cores do site da UBM */
+  :root {
+    color-scheme: light;
+    --fg: 15 13 29; /* #0f0d1d */
+    --ink-950: 232 236 243;
+    --ink-900: 244 246 249; /* fundo da página, #f4f6f9 */
+    --ink-850: 248 250 252; /* campos */
+    --ink-800: 255 255 255; /* cards */
+    --ink-700: 234 240 248; /* hover e chips */
+    --ink-600: 255 255 255; /* menus e avisos */
+    --ink-500: 222 229 239;
+    --brand-900: 238 244 251;
+    --brand-800: 219 232 247;
+    --brand-700: 22 68 120;
+    --brand-600: 28 83 144; /* azul UBM, #1c5390 */
+    --brand-500: 36 99 168;
+    --brand-400: 59 124 196;
+    --brand-300: 28 83 144;
+    --brand-200: 23 69 122;
+    --brand-100: 18 55 97;
+    --fog: 71 80 99;
+    --mist: 104 113 133;
+    --line-alpha: 0.1;
+    --like: 228 61 100;
+    --online: 22 163 106;
+    --warn: 196 133 12;
+    --danger: 214 48 64;
+    --shadow-float: 0 18px 44px -14px rgb(15 13 29 / 0.28), 0 0 0 1px rgb(15 13 29 / 0.06);
+    --scroll-thumb: #0a2a5e;
+  }
+
+  /* Tema escuro: aplicado na barra lateral, no painel do login, em mídias e em botões azuis */
+  .theme-dark {
+    color-scheme: dark;
+    --fg: 255 255 255;
+    --ink-950: 11 10 22;
+    --ink-900: 15 13 29; /* #0f0d1d */
+    --ink-850: 19 17 38;
+    --ink-800: 23 21 45;
+    --ink-700: 30 27 58;
+    --ink-600: 39 35 73;
+    --ink-500: 52 47 94;
+    --brand-900: 16 44 79;
+    --brand-800: 21 61 107;
+    --brand-700: 22 68 120;
+    --brand-600: 28 83 144;
+    --brand-500: 40 104 178;
+    --brand-400: 76 134 208;
+    --brand-300: 130 172 232;
+    --brand-200: 174 200 241;
+    --brand-100: 219 231 249;
+    --fog: 186 190 212;
+    --mist: 140 144 176;
+    --line-alpha: 0.09;
+    --like: 255 107 139;
+    --online: 63 214 155;
+    --warn: 242 184 75;
+    --danger: 255 114 114;
+    --shadow-float: 0 18px 50px -12px rgb(4 3 12 / 0.75), 0 0 0 1px rgb(255 255 255 / 0.06);
+    --scroll-thumb: rgb(255 255 255 / 0.3);
+    color: rgb(var(--fg));
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  /* Configurações → Acessibilidade → Texto maior */
+  html.large-text {
+    font-size: 112.5%;
+  }
+
+  body {
+    @apply bg-ink text-white font-sans antialiased;
+    min-height: 100dvh;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    letter-spacing: -0.015em;
+  }
+
+  ::selection {
+    background: rgb(var(--brand-400) / 0.3);
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--brand-400));
+    outline-offset: 2px;
+  }
+
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgb(var(--mist));
+  }
+
+  /* Barras de rolagem
+     Mouse ou trackpad: barra própria, uma pílula azul-marinho que fica amarela sob o cursor.
+     Toque: nenhuma barra, porque a página é arrastada com o dedo. */
+  @media (pointer: fine) {
+    *::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      width: 14px;
+    }
+    *::-webkit-scrollbar-track,
+    *::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+    html::-webkit-scrollbar-track,
+    body::-webkit-scrollbar-track {
+      background: rgb(var(--ink-950));
+    }
+    *::-webkit-scrollbar-thumb {
+      min-height: 3rem;
+      border: 3px solid transparent;
+      border-radius: 999px;
+      background-color: var(--scroll-thumb);
+      background-clip: padding-box;
+    }
+    *::-webkit-scrollbar-thumb:hover,
+    *::-webkit-scrollbar-thumb:active {
+      background-color: #ffb000;
+    }
+    /* Firefox não aceita os seletores acima: usa a versão fina nas mesmas cores */
+    @supports not selector(::-webkit-scrollbar) {
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--scroll-thumb) transparent;
+      }
+    }
+  }
+  @media (pointer: coarse) {
+    * {
+      scrollbar-width: none;
+    }
+    *::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+@layer components {
+  /* Azul-marinho da navegação (barra lateral, barra superior, barra inferior e painel do login).
+     Use junto com .theme-dark para os textos e ícones ficarem claros. */
+  .theme-navy {
+    --ink-950: 3 14 36;
+    --ink-900: 4 20 48;
+    --ink-850: 5 24 56;
+    --ink-800: 8 32 72;
+    --ink-700: 14 44 94;
+    --ink-600: 10 36 80;
+    --ink-500: 26 62 122;
+    --fog: 190 203 226;
+    --mist: 138 156 190;
+  }
+  .navy-surface {
+    background: linear-gradient(180deg, #06204a 0%, #041838 48%, #03112b 100%);
+  }
+  .navy-bar {
+    background: linear-gradient(90deg, #041838 0%, #06204a 55%, #05193c 100%);
+  }
+  /* Botão amarelo das ações principais */
+  .btn-sun {
+    @apply bg-gradient-to-b from-[#ffc533] to-sun font-bold text-night;
+    box-shadow: 0 10px 24px -12px rgba(255, 176, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+  .btn-sun:hover {
+    filter: brightness(1.06);
+  }
+
+  .card {
+    @apply rounded-card border border-line bg-ink-800;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-line bg-ink-850 px-3.5 py-2.5 text-[0.9375rem] text-white transition-colors;
+  }
+  .field:hover {
+    border-color: rgb(var(--fg) / 0.22);
+  }
+  .field:focus {
+    @apply border-brand-400 bg-ink-800 outline-none;
+    box-shadow: 0 0 0 3px rgb(var(--brand-400) / 0.22);
+  }
+  .field[aria-invalid='true'] {
+    @apply border-danger;
+    box-shadow: 0 0 0 3px rgb(var(--danger) / 0.14);
+  }
+
+  select.field {
+    appearance: none;
+    padding-right: 2.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237d869b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.85rem center;
+  }
+  select.field option {
+    background: rgb(var(--ink-800));
+    color: rgb(var(--fg));
+  }
+
+  /* Carrossel de Connecs e destaques: a largura dos cartões é calculada para que o último
+     visível apareça cortado à direita, indicando que há mais para ver.
+     --rail-per = quantos cartões cabem (com fração); --rail-gaps = espaços entre os inteiros. */
+  .rail-item {
+    flex: 0 0 auto;
+    width: calc((100% - var(--rail-gaps)) / var(--rail-per));
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden rounded-lg bg-white/[0.06];
+  }
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgb(var(--fg) / 0.07), transparent);
+    animation: shimmer 1.4s infinite;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Barra de tempo de cada Connec no visualizador */
+@keyframes connec-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Movimento reduzido: preferência do sistema ou Configurações → Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
